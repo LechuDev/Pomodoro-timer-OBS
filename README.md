@@ -1,84 +1,110 @@
-# Pomodoro Timer para OBS Studio
+﻿# Pomodoro Timer para OBS Studio
 
-Un script de Lua que implementa un temporizador Pomodoro integrado en OBS Studio para mejorar la productividad durante transmisiones en vivo o grabaciones.
+**Un temporizador Pomodoro para OBS que muestra el tiempo en pantalla, reproduce sonidos y te ayuda a mantener foco mientras transmites o grabas.**
 
-## Características
+---
 
-- **Temporizador Pomodoro**: Ciclos de trabajo enfocados de 25 minutos seguidos de descansos cortos (5 minutos) o largos (15 minutos).
-- **Integración con OBS**: Actualiza automáticamente una fuente de texto en tu escena de OBS.
-- **Sonidos personalizables**: Reproduce sonidos al inicio de sesiones, descansos y avisos.
-- **Controles intuitivos**: Botones para iniciar, pausar, reiniciar y saltar fases.
-- **Configurable**: Ajusta duraciones, número de sesiones y sonidos según tus necesidades.
+## 📸 Capturas (cómo se ve en OBS)
 
-## Palabras clave para búsqueda
-Pomodoro Timer, OBS Studio, Lua Script, Temporizador Productividad, Streaming Tools, Focus Timer, Break Timer, OBS Plugin, Lua OBS Script.
+> Estos ejemplos vienen de la propia ventana de scripts de OBS: controles, ajustes y vista en escena.
 
-## Instalación
+![Controles del temporizador](screenshots/Controles.png)
+*Botones para iniciar/pausar/resetear y opciones de temporizador*.
+
+![Sesiones configurables](screenshots/Sesiones configurables.png)
+*Configura los minutos de Focus, descanso corto/largo y cuántas sesiones forman un ciclo.*
+
+![Activación de sonidos](screenshots/Activacion de Sonidos con uso de fuentes.png)
+*Activa sonidos para cada fase y el aviso de últimos minutos/segundos.*
+
+---
+
+## 🚀 Inicio rápido
+
+1. Descarga el script `pomodoro_lechudev.lua` y colócalo en una carpeta accesible (idealmente la de scripts de OBS).
+2. En OBS, ve a **Herramientas > Scripts** y agrega el archivo.
+3. Crea una fuente de texto en tu escena (Texto GDI+ o similar) y selecciónala en el script.
+4. Ajusta los minutos de foco y descansos según tu ritmo.
+5. ¡Pulsa **Start** y empieza a trabajar con Pomodoro!
+
+---
+
+## ✅ ¿Qué hace este script?
+
+- Muestra en tu escena el estado actual: **FOCUS / SHORT BREAK / LONG BREAK**.
+- Cambia automáticamente entre trabajo y descanso.
+- Reproduce sonidos al inicio de cada fase y en avisos (últimos 10 minutos/10 segundos).
+- Te permite pausar, resetear o saltar fases con un solo clic.
+
+---
+
+## 🛠️ Uso rápido (sin complicaciones)
+
+### 1) Configurar la fuente de texto
+
+1. Agrega una fuente de texto en OBS (Texto GDI+ o similar).
+2. Nómbrala (por ejemplo, **Pomodoro Timer**).
+3. En el script, selecciona esa fuente en el campo **Fuente de texto del temporizador**.
+
+### 2) Ajustes principales
+
+- **Minutos Focus**: duración de cada sesión de trabajo.
+- **Minutos descanso corto**: duración del descanso corto.
+- **Minutos descanso largo**: duración del descanso largo.
+- **Cada cuántas sesiones hay descanso largo**: cuántos bloques de trabajo hasta un descanso largo.
+- **Total de sesiones del ciclo**: cuántas sesiones completan un ciclo completo.
+
+### 3) Sonidos (opcional)
+
+- Crea fuentes de medios en OBS con tus archivos de audio.
+- Selecciona esas fuentes en el script (Focus, Short, Long, aviso, tick).
+- Activa las casillas para habilitar cada sonido.
+
+### 💡 Consejos rápidos
+
+- Ajusta la fuente/estilo del texto en OBS para que se vea claro en tu escena.
+- Si transmites, usa una escena aparte para el “modo focus” y otra para el “modo descanso”.
+- ¿Tienes prisa? El botón **Reset** vuelve al inicio de la sesión.
+
+---
+
+## 🧠 ¿Cómo funciona?
+
+- El temporizador se actualiza automáticamente y envía el estado a una fuente de texto en tu escena.
+- Cuando termina una fase, cambia al siguiente tipo (Focus → Short → Focus → … → Long).
+- Cada ciclo combina varios bloques de trabajo y descansos.
+- El script emite avisos en los últimos 10 minutos de Focus y en los últimos 10 segundos de cualquier fase.
+
+---
+
+## 🔧 Instalación (detalles técnicos)
 
 ### Requisitos previos
-- **OBS Studio**: Asegúrate de tener OBS Studio instalado en tu sistema. Puedes descargarlo desde [obsproject.com](https://obsproject.com/).
-- **Lua**: OBS Studio incluye soporte nativo para scripts Lua, así que no necesitas instalar nada adicional.
+
+- **OBS Studio** (válido para Windows, macOS o Linux).
+- **Lua**: ya incluido con OBS, no requiere instalación.
 
 ### Pasos de instalación
-1. **Descarga el script**:
-   - Clona este repositorio o descarga el archivo `pomodoro_lechudev.lua`.
-   - Coloca el archivo en una carpeta accesible, por ejemplo, en tu carpeta de scripts de OBS.
 
-2. **Carga el script en OBS**:
-   - Abre OBS Studio.
-   - Ve a **Herramientas** > **Scripts**.
-   - Haz clic en el botón **+** para agregar un script.
-   - Selecciona el archivo `pomodoro_lechudev.lua` y haz clic en **Abrir**.
+1. Clona este repositorio o descarga `pomodoro_lechudev.lua`.
+2. En OBS, ve a **Herramientas > Scripts**.
+3. Agrega `pomodoro_lechudev.lua`.
+4. Configura el script como se describe arriba.
 
-3. **Configura el script**:
-   - En la ventana de Scripts, selecciona el script cargado.
-   - Configura las opciones según tus preferencias (ver sección de Configuración).
+---
 
-## Uso
+## 🤝 Contribución
 
-### Configuración inicial
-1. **Crea una fuente de texto**:
-   - En tu escena de OBS, agrega una nueva fuente de texto (Texto GDI+ o similar).
-   - Nómbrala de manera descriptiva, por ejemplo, "Pomodoro Timer".
+¿Tienes una idea o encontraste un bug? Abre un issue o un pull request en este repositorio.
 
-2. **Selecciona la fuente en el script**:
-   - En la configuración del script, selecciona la fuente de texto que creaste en el campo "Fuente de texto del temporizador".
+---
 
-3. **Ajusta la configuración**:
-   - **Minutos Focus**: Duración de la sesión de trabajo (por defecto 25 minutos).
-   - **Minutos descanso corto**: Duración del descanso corto (por defecto 5 minutos).
-   - **Minutos descanso largo**: Duración del descanso largo (por defecto 15 minutos).
-   - **Cada cuántas sesiones hay descanso largo**: Número de sesiones antes de un descanso largo (por defecto 4).
-   - **Total de sesiones del ciclo**: Número total de sesiones en un ciclo completo (por defecto 8).
+## 📄 Licencia
 
-4. **Configura sonidos (opcional)**:
-   - Crea fuentes de medios en OBS para tus sonidos (archivos MP3 o WAV).
-   - Selecciona las fuentes en los campos correspondientes del script.
-   - Habilita los sonidos que deseas usar.
+Este proyecto está bajo la Licencia MIT.
 
-### Controles
-- **Start**: Inicia el temporizador.
-- **Pause**: Pausa el temporizador.
-- **Reset**: Reinicia el temporizador a la sesión 1.
-- **Skip fase**: Salta a la siguiente fase (trabajo o descanso).
+---
 
-### Cómo funciona
-- El script muestra el modo actual (FOCUS, SHORT BREAK, LONG BREAK), el tiempo restante y la sesión actual.
-- Al finalizar una sesión de trabajo, automáticamente pasa a un descanso.
-- Después de 4 sesiones de trabajo, se activa un descanso largo.
-- Suena un aviso en los últimos 10 minutos de foco y en los últimos 10 segundos de cualquier fase.
+## ✨ Autor
 
-## Ejemplos de uso
-- **Streaming**: Usa el timer durante tus transmisiones para mantener intervalos de trabajo y descanso.
-- **Grabación**: Aplica la técnica Pomodoro para sesiones de edición de video.
-- **Estudio**: Mejora la concentración en tareas creativas o de aprendizaje.
-
-## Contribución
-Si encuentras errores o tienes sugerencias, por favor abre un issue en este repositorio.
-
-## Licencia
-Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
-
-## Autor
-Creado por lechudev. ¡Gracias por usar Pomodoro Timer para OBS!</content>
-<parameter name="filePath">c:\Users\jafj_\Desktop\Portfolio\Lua\Proyectos\Proyecto 1\README.md
+Creado por lechudev. ¡Gracias por usar Pomodoro Timer para OBS!
