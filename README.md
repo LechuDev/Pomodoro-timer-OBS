@@ -17,14 +17,17 @@
 ## 📸 Este Scrip contiene una interfaz con Controles de sesiones pomodoro
 
 ![Controles del temporizador](screenshots/Controles.png)
-*Panel con los botones **Start**, **Pause**, **Reset** y **Skip fase**.
-Para iniciar pausar, saltar o terminar tus sesiones
+
+*Panel con los botones **Start**, **Pause**, **Reset** y **Skip fase**.*
+*Para iniciar pausar, saltar o terminar tus sesiones*
 
 ![Sesiones configurables](screenshots/Sesionesconfigurables.png)
+
 *Inputs para cambiar la duración sesiones y el número de ciclos. Fácil de ajustar en vivo.*
 
 ![Activación de sonidos](screenshots/ActivarSonidos.png)
-*Opciones para Activar/desactivar Sonidos de notificación cuando termina una sesión
+
+*Opciones para Activar/desactivar Sonidos de notificación cuando termina una sesión*
 
 Con este script tu puedes utilizar las Fuentes de texto que quieras, los colores que quieras,
 Puedes usar los sonidos de notificaciones que quieras
